@@ -10,6 +10,10 @@ const Shop = () => {
     },[])
     // ai state ta cart a selected product dekhanor jonno
 const [cart, setCart]=useState([])
+// nicher function ta amra product.jsx theke eikhane nia ashsi coz react a kono data back pathano jaina
+// tai amra function ta aikhane rekhe eta k props er maddhome product.jsx theke call korbo
+// eikhaner handleAddToCart function er j 'product' parameter ta nisi seta amra product.jsx theke
+// button click er maddhome nitesi j kon product er button a user click korse.
     const handleAddToCart=(product)=>{
         const newCart = [...cart, product];
         setCart(newCart);
