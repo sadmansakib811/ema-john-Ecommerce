@@ -4,19 +4,23 @@ const Cart = ({cart}) => {
     //const {cart} = props;
     // system of calculating the total value of cart:
     console.log(cart)
-    let total = 0;
+    let totalPrice = 0;
+    let totalShipping = 0;
     // forOf loop
     for (const product of cart){
-        total = total+product.price;
+        totalPrice = totalPrice+product.price;
+        totalShipping = totalShipping+ product.shipping
     }
+    const tax = (totalPrice*7)/100;
+    const grandTotal = (tax+totalPrice);
     return (
         <div className='cart'>
-           <h4>order summery</h4>
-             <p>Selected Items:{cart.length}</p>
-             <p>Total Price:{total}</p>
-             <p>Total Shipping:</p>
-             <p>Tax:</p>
-             <h6>Grand Total:</h6> 
+           <h2>Cart</h2>
+             <p>Selected Items: {cart.length}</p>
+             <p>Total Price: ${totalPrice}</p>
+             <p>Total Shipping: {totalShipping}</p>
+             <p>Tax: ${tax}</p>
+             <h3>Grand Total: ${grandTotal}</h3> 
         </div>
     );
 };
