@@ -3,7 +3,7 @@ import './Cart.css'
 const Cart = ({cart}) => {
     //const {cart} = props;
     // system of calculating the total value of cart:
-    console.log(cart)
+    
     let totalPrice = 0;
     let totalShipping = 0;
     // forOf loop
@@ -12,15 +12,15 @@ const Cart = ({cart}) => {
         totalShipping = totalShipping+ product.shipping
     }
     const tax = (totalPrice*7)/100;
-    const grandTotal = (tax+totalPrice);
+    const grandTotal = (tax+totalPrice+totalShipping);
     return (
         <div className='cart'>
            <h2>Cart</h2>
              <p>Selected Items: {cart.length}</p>
-             <p>Total Price: ${totalPrice}</p>
-             <p>Total Shipping: {totalShipping}</p>
-             <p>Tax: ${tax}</p>
-             <h3>Grand Total: ${grandTotal}</h3> 
+             <p>Total Price: ${totalPrice.toFixed(2)}</p>
+             <p>Total Shipping Cost: {totalShipping.toFixed(2)}</p>
+             <p>Tax: ${tax.toFixed(2)}</p>
+             <h3>Grand Total: ${grandTotal.toFixed(2)}</h3> 
         </div>
     );
 };

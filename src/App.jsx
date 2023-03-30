@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import './App.css'
 import Header from './components/Header/Header'
-import Shop from './Components/Header/Shop/Shop'
+import Shop from './Components/Shop/Shop'
 
 function App() {
   const [count, setCount] = useState(0)
