@@ -1,22 +1,37 @@
 import React from 'react';
 import './Cart.css'
+
 const Cart = ({cart}) => {
-    //const {cart} = props;
-    // system of calculating the total value of cart:
-    
     let totalPrice = 0;
     let totalShipping = 0;
-    // forOf loop
+    let quantity = 0;
+
+    // Create an object to store the quantities of each product
+    const quantities = {};
     for (const product of cart){
-        totalPrice = totalPrice+product.price;
-        totalShipping = totalShipping+ product.shipping
+        product.quantity = product.quantity || 1;
+        totalPrice = totalPrice + product.price * product.quantity;
+        totalShipping = totalShipping + product.shipping;
+        // Increment the quantity for this product in the quantities object
+        quantities[product.name] = (quantities[product.name] || 0) + product.quantity;
     }
+
     const tax = (totalPrice*7)/100;
     const grandTotal = (tax+totalPrice+totalShipping);
+
     return (
         <div className='cart'>
            <h2>Cart</h2>
-             <p>Selected Items: {cart.length}</p>
+           {
+            // Map over the unique product names and display the total quantity for each group
+            Object.keys(quantities).map(name =>
+            <div key={name}>
+                <p>{name}</p>
+                <p>Item Quantity: {quantities[name]}</p>
+                <hr />
+            </div>)
+           }
+             <h5>Total Product: {cart.length}</h5>
              <p>Total Price: ${totalPrice.toFixed(2)}</p>
              <p>Total Shipping Cost: {totalShipping.toFixed(2)}</p>
              <p>Tax: ${tax.toFixed(2)}</p>
