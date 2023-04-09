@@ -3,7 +3,7 @@ import Cart from '../Cart/Cart';
 import { useLoaderData } from 'react-router-dom';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import './Order.css'
-import { removeFromDb } from '../../utilities/fakedb';
+import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 
 
 const Orders = () => {
@@ -17,7 +17,14 @@ const Orders = () => {
     //    local storage thekeo dlt korte hbe naile reload dile dlt item abr back ashbe.
     //  fakedb file a ekta removefromdb function call kore setai id dia dibo:
     removeFromDb(id);
+    
+    }
 
+    // cart clear korar button er function likhe seta cart.jsx a pathabo.karon button oikhane:
+    // same nicher handleclearcart funtion ta shop.jsx eo lekha lagbe naile oikhane clear buton kaj korbena
+    const handleClearCart =()=>{
+        setCart([]);
+        deleteShoppingCart();
     }
     return (
         <div className='shop-container'>
@@ -31,7 +38,11 @@ const Orders = () => {
                 }
             </div>
             <div className='cart-container'>
-               <Cart cart={cart}></Cart>
+               <Cart 
+               
+               cart={cart}
+               handleClearCart = {handleClearCart}
+               ></Cart>
             </div>
         </div>
     );

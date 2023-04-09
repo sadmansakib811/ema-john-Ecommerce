@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart } from '../../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -43,7 +43,11 @@ const [cart, setCart]=useState([])
         } // uporer useState theke products er data nia ansi jate localhost a save thaka id er sathe product match kore exact product tar sob info show kora jai
         setCart(savedCart);
     },[products])
-
+// handle clear cart button er funciton:
+const handleClearCart =()=>{
+    setCart([]);
+    deleteShoppingCart();
+}
 
     return (
         
@@ -58,7 +62,9 @@ const [cart, setCart]=useState([])
             }
             </div>
             <div className="cart-container">
-             <Cart cart ={cart}></Cart>
+             <Cart cart ={cart}
+             handleClearCart={handleClearCart}
+             ></Cart>
              
             </div>
         </div>
