@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cart from '../Cart/Cart';
+import { useLoaderData } from 'react-router-dom';
+import ReviewItem from '../ReviewItem/ReviewItem';
+import './Order.css'
+import { removeFromDb } from '../../utilities/fakedb';
 
 
 const Orders = () => {
+    const savedCart = useLoaderData();
+    // item cart theke delete korar jonno:
+    const [cart, setCart] = useState(savedCart);
+    const handleremoveFromCart=(id) =>{
+        // id er sathe jeta match korbe sei product ta bad dia baki gula nibo
+       const remaining = cart.filter(product => product.id !== id);
+       setCart(remaining);
+    //    local storage thekeo dlt korte hbe naile reload dile dlt item abr back ashbe.
+    //  fakedb file a ekta removefromdb function call kore setai id dia dibo:
+    removeFromDb(id);
+
+    }
     return (
         <div className='shop-container'>
-            <div className='products-container'>
-                <h1>Products</h1>
+            <div className='review-container'>
+                {
+                    cart.map(product => <ReviewItem
+                    key={product.id}
+                    product={product}
+                    handleremoveFromCart={handleremoveFromCart}
+                    ></ReviewItem>)
+                }
             </div>
             <div className='cart-container'>
-               <Cart cart ={[]}></Cart>
+               <Cart cart={cart}></Cart>
             </div>
         </div>
     );

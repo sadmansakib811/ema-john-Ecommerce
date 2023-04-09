@@ -6,11 +6,43 @@
 .products-container{
     margin: 50px;
     display: grid;
+    
     grid-template-columns: repeat(4, 1fr);
     gap: 45px;
 }
+ /* For ultra wide screen: */
+@media only screen and (min-width: 2040px) {
+   
+    
+    .products-container{
+        
+        
+        grid-template-columns: repeat(6, 1fr);
+        
+    }
+  }
 
 
+  /* For mobile screen: */
+  @media only screen and (max-width: 700px) {
+   
+    
+    .products-container{
+        
+        
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+  }
+/* For tablet screen: */
 
-  
-  
+  @media only screen and (max-width: 912px) {
+   
+    
+    .products-container{
+        
+        
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+  }
